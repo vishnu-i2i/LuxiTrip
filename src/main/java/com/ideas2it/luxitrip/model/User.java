@@ -1,4 +1,4 @@
-package com.ideas2it.project.LuxiTrip.model;
+package com.ideas2it.luxitrip.model;
 
 import javax.persistence.*;
 

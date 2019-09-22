@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ideas2it.project</groupId>
-  <artifactId>LuxiTrip</artifactId>
+  <groupId>com.ideas2it</groupId>
+  <artifactId>luxitrip</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -12,7 +13,6 @@
 
   <properties>
  <spring.version>4.2.4.RELEASE</spring.version>
- <spring-security.version>4.0.3.RELEASE</spring-security.version>
  <jstl.version>1.2</jstl.version>
  <maven.compiler.source>1.8</maven.compiler.source>
  <maven.compiler.target>1.8</maven.compiler.target>
@@ -60,23 +60,6 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-        
-        <dependency>  
-            <groupId>org.springframework.security</groupId>  
-            <artifactId>spring-security-web</artifactId>  
-            <version>${spring-security.version}</version>
-       </dependency>  
-       
-       <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring-security.version}</version>
-        </dependency>
-        <dependency>
-    <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>${spring-security.version}</version>
-    </dependency>
    <dependency>
     <groupId>jstl</groupId>
     <artifactId>jstl</artifactId>
@@ -123,6 +106,12 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>${mysql.connector.java.version}</version>
   </dependency>
+   <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <scope>provided</scope>
+              <version>9.0.22</version>
+    </dependency>
   </dependencies>
   <build>
 <plugins>
@@ -131,7 +120,7 @@
   <artifactId>maven-war-plugin</artifactId>
   <version>3.2.3</version>
   <configuration>
-    <webXml>/home/ubuntu/Desktop/LuxiTrip/src/main/webapp/WEB-INF\web.xml</webXml>
+    <webXml>/home/ubuntu/Desktop/eclipse-workspace/LuxiTrip-1/src/main/webapp/WEB-INF\web.xml</webXml>
      <webResources>
       <resource>
        <directory>src</directory>
@@ -144,7 +133,7 @@
   <artifactId>maven-javadoc-plugin</artifactId>
   <version>3.1.1</version>
   <configuration>
-    <webXml>/home/ubuntu/Desktop/LuxiTrip/src/main/webapp/WEB-INF\web.xml</webXml>
+    <webXml>/home/ubuntu/Desktop/eclipse-workspace/LuxiTrip-1/src/main/webapp/WEB-INF\web.xml</webXml>
      <webResources>
       <resource>
        <directory>src</directory>
