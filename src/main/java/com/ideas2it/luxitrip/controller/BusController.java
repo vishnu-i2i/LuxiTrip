@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ideas2it.luxitrip.service.impl.BusServiceImpl;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
 import com.ideas2it.luxitrip.model.Seat;
+import com.ideas2it.luxitrip.service.BusService;
 
 @Controller
 public class BusController {
-@Autowired
-    private BusServiceImpl busService = new BusServiceImpl();
+    @Autowired
+    private BusService busService;
 
     /**
      * Gets the bus details from the user in jsp page and sets it the 
@@ -103,6 +101,7 @@ public class BusController {
             bus.setBusNumber(request.getParameter("busNumber"));
             bus.setCapacity(Integer.parseInt(request.getParameter("capacity")));
             bus.setOperator(request.getParameter("operator"));
+            bus.setType(request.getParameter("type"));
             bus.setStatus(true);
             Seat seat = bus.getSeats().get(0);
             seat.setSeatNumber(request.getParameter("seatNumber"));

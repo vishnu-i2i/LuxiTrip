@@ -5,7 +5,7 @@ import java.util.List;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
 
-public interface IBusDao {
+public interface BusDao {
 	
 	/**
      * Inserts the bus data entered by the admin to the bus table 

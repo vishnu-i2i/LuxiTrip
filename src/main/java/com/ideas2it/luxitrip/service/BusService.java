@@ -6,7 +6,7 @@ import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
 import com.ideas2it.luxitrip.model.Seat;
 
-public interface IBusService {
+public interface BusService {
 	
 	/**
      * Calls the insertBus method in the DAO class

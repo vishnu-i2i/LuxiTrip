@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ideas2it.luxitrip.dao.impl.BusDaoImpl;
+import com.ideas2it.luxitrip.dao.BusDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
 import com.ideas2it.luxitrip.model.Seat;
+import com.ideas2it.luxitrip.service.BusService;
 
-@Service
-public class BusServiceImpl {
+
+public class BusServiceImpl implements BusService{
 	@Autowired
-	private BusDaoImpl busDao = new BusDaoImpl();
+	private BusDao busDao;
 	
 	public boolean createBus(Bus bus) throws CustomException {
         return (busDao.insertBus(bus) == (bus.getId()));

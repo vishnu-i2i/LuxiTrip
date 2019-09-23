@@ -10,12 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import org.hibernate.annotations.Proxy;
 import javax.persistence.Table;
 
 import java.util.ArrayList;
-
-import com.ideas2it.luxitrip.model.Seat;
 
 @Entity
 @Table(name = "bus")
@@ -40,6 +37,10 @@ public class Bus {
     
     @Column(name = "status", length=20, nullable=true)
     private boolean status;
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="bus_id")
+    private List<Seat> seats = new ArrayList<>();
 	
     public String getType() {
         return type;
@@ -53,10 +54,7 @@ public class Bus {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="bus_id")
-	private List<Seat> seats = new ArrayList<>();
-	
+    
 	public int getId() {
 		return id;
 	}

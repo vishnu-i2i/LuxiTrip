@@ -2,15 +2,11 @@ package com.ideas2it.luxitrip.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.ideas2it.luxitrip.model.Bus;
 
