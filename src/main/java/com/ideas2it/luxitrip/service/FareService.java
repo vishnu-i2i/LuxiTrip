@@ -2,7 +2,7 @@ package com.ideas2it.luxitrip.service;
 
 import java.util.List;
 
-import com.ideas2it.luxitrip.exception.UserException;
+import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Fare;
 
 public interface FareService {
@@ -10,36 +10,36 @@ public interface FareService {
 	/**
      * Method used to create the Fare details into the database 
      * @param fare
-     * @throws UserException
+     * @throws CustomException
      */
-    public void createFare(Fare fare) throws UserException;
+    public void createFare(Fare fare) throws CustomException;
     
     /**
      * Method used to update the value of existing fare values 
      * @param fare updating values 
-     * @throw UserException
+     * @throw CustomException
      */
-    public void updateFare(Fare fare) throws UserException;
+    public void updateFare(Fare fare) throws CustomException;
     
     /**
      * Method used to delete the value of fare by using the id 
      * @param fareId
-     * @throws UserException
+     * @throws CustomException
      */
-    public void deleteFare(int fareId) throws UserException;
+    public void deleteFare(int fareId) throws CustomException;
     
     /**
      * Method used to retrieve the list of fare objects into the database
      * @return the list of fares
-     * @throws UserException
+     * @throws CustomException
      */
-    public List<Fare> retrieveFares() throws UserException;
+    public List<Fare> retrieveFares() throws CustomException;
     
     /**
      * Method used to retrieve the fare and its details by using the fareId
      * @param id
      * @return
-     * @throws UserException
+     * @throws CustomException
      */
-    public Fare retrieveFareById(int id) throws UserException;
+    public Fare retrieveFareById(int id) throws CustomException;
 }

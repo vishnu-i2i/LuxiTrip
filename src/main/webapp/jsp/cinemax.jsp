@@ -23,7 +23,7 @@
 <input type="hidden" name="userId" value="${user.getId()}"/>
 <button class="button" type="submit"><i class="fa fa-home"></i></button>
 </form>
-<form action="displayUser" method="post">
+<form action="registerFare" method="post">
 <button class="button" type="submit"><i style="font-family:verdana;">User Management</i></button>
 </form>
 <form action="displayTheatres">

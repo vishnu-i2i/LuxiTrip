@@ -1,0 +1,170 @@
+.grad {
+  margin:0px;
+  background-image: linear-gradient(to right, #16bbf7, #82d6f5, #79f2ec);
+}
+
+.scroll {
+  padding:0px 300px 0px 300px;
+}
+
+.navbutton{
+background: transparent;
+width:100%
+}
+
+.navbutton:hover{
+background-color: white;
+}
+.navlarge{
+font-size:30px!important
+}
+
+.navxxlarge{
+font-size:36px!important
+}
+.navwhite,.navhover-white:hover{
+color:#000!important;
+border:0px;mySidebar
+background-color:#16bbf7!important;
+}
+.navwhite:hover{
+background-color:#93b2c8!important;
+}
+
+.navsidebar{
+    height: 100%;
+    width: 200px;
+    background-color: #fff;
+    position: fixed!important;
+    z-index: 1;
+    overflow: a
+}
+
+.navbar-block{
+  color: #fff!important;
+  background-color: #334e62!important;
+}
+
+.navbar-block .navbar-itemm{
+width:100%;
+display:block;
+padding:8px 16px;
+text-align:right;
+font-size: 17px;
+font-style: oblique;
+border:none;
+white-space:normal;
+float:none;
+outline:0;
+}
+.navbar-block .navbar-item{
+width:100%;
+display:block;
+padding:8px 16px;
+text-align:left;
+font-size: 17px;
+font-style: oblique;
+border:none;
+white-space:normal;
+float:none;
+outline:0;
+}
+
+.navanimate-left{
+position:relative;
+animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+
+body {
+background-image: linear-gradient(to bottom, #6b717b, #132938);
+background-size: 100%;
+margin: 0px;
+}
+
+.divbox {
+margin-left:25px;
+margin-top:25px;
+margin-right:15px;
+margin-bottom:15px;
+text-align: left;
+background: #93b2c7;
+border-radius: 15px;
+opacity: 0.8;
+width: 180px;
+height:220px;
+padding: 5px 0px 5px 5px;
+display: inline-block;
+size : 19px;
+}
+.divfieldset {
+border: none;
+}
+.divfieldsetlegend {
+text-align: center;
+font-size:40px;
+color: white;
+padding-bottom: 5px;
+}
+.button {
+border: 2px;
+text-align: center;
+text-decoration: none;
+margin-left: 5px;
+margin-right: 5px;
+display: inline-block;
+font-size: 16px;
+transition-duration:  0.5s;
+color: black;
+cursor: pointer;
+width: 30px;
+height:30px;
+cursor: pointer;
+border-radius:100px;
+}
+.remove {
+background: transparent;
+box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.2);
+color: black;
+border: none;
+}
+.remove:hover {
+transform: scale(1.3);
+color: black;
+background: #ff4a3d;
+}
+
+.update {
+background: transparent;
+box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.2);
+color: black;
+border: none;
+}
+.update:hover {
+transform: scale(1.3);
+color: black;
+background: #f5f5f5;
+}
+.display-margin {
+display:block;
+margin-left: 150px;
+}
+
+.display {
+background: transparent;
+box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.2);
+color: black;
+border: none;
+}
+.display:hover {
+transform: scale(1.3);
+color: black;
+background: #2da7ed;
+}
+
+.luxitrip {
+width: 150px;
+height:100px;
+}
+html {
+height: 100%;
+width: 100%;
+}
