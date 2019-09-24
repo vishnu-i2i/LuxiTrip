@@ -18,7 +18,7 @@
             <a class="hiddenanchor" id="tologin"></a>
             <div id="wrapper">
                <div id="login" class="animate form">
-                  <form  action="validateUser" autocomplete="on">
+                  <form  action="login" autocomplete="on">
                      <h1>Log in</h1>
                      <p> 
                         <label for="username" class="uname" >User Name</label>
@@ -67,9 +67,10 @@
                      <label>Password </label>
                      <input required="required" type="password" name="password" placeholder="X8df!90EO"/>
                      </p>
+                      <input type="hidden" value="User" name="role"/>
                      <center><%if(request.getAttribute("message") != null) {%>
-        <%=request.getAttribute("message")%></center>
-        <%}%>
+                      <%=request.getAttribute("message")%></center>
+                     <%}%>
                      
                      <p class="signin button"> 
                         <input type="submit" value="Sign up"/> 

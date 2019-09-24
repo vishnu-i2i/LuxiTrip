@@ -43,7 +43,11 @@
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
+<<<<<<< HEAD
      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 2 <span class="caret"></span></a>
+=======
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 2 <span              class="caret"></span></a>
+>>>>>>> feature -
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
           <li><a href="#">Page 1-2</a></li>
@@ -56,7 +60,26 @@
      <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
+<<<<<<< HEAD
 
+=======
+<div class="form-popup" id="myForm">
+  <form:form action="updateUser" class="form-container" modelAttribute="user">
+    <label><b>User Id</b></label>
+    <form:input type="text" value="${user.id}" path="id" readonly="true"/>
+    <label><b>Name</b></label>
+    <form:input type="text" value="${user.name}" path="name" />
+
+    <label><b>Mobile Number</b></label>
+    <form:input type="tel" value="${user.number}" path="number"/>
+    <label><b>Email</b></label>
+    <form:input type="email" value="${user.emailId}" path="emailId" /> 
+    
+    <button type="submit" class="btn">Edit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form:form>
+</div>
+>>>>>>> feature -
 
 <script>
 
@@ -74,19 +97,48 @@ function closeForm() {
             <div class="container">
                <div class="row">
                   <div class="booking-form">
+<<<<<<< HEAD
                      <form method="post" action="getSchedules">
+=======
+                     <form>
+>>>>>>> feature -
                         <div class="row no-margin">
                            <div class="col-md-3">
                               <div class="form-group">
                                  <span class="form-label">Source</span>
-                                 <input class="form-control" type="text" name="source" placeholder="From:">
+<<<<<<< HEAD
+                                 <select name="source">
+                                 <c:forEach var="stop" items="${stops}">
+                    				<option value="${stop}">
+                        			  <c:out value="${stop.name}"
+                                    </option>
+                                 </c:forEach>
+=======
+                                 <input class="form-control" type="text" placeholder="From:">
+>>>>>>> feature -
                               </div>
                            </div>
                            <div class="row no-margin">
                            <div class="col-md-3">
                               <div class="form-group">
                                  <span class="form-label">Destination</span>
-                                 <input class="form-control" type="text" name="destination" placeholder="To:">
+<<<<<<< HEAD
+                                 <select name="destination">
+                                 <c:forEach var="stop" items="${stops}">
+                    				<option value="${stop}">
+                        			  <c:out value="${stop.name}"
+                                    </option>
+                                 </c:forEach>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                             <div class="form-btn">
+                               <button class="submit-btn">Check availability</button>
+                             </div>
+                           </div>
+                         </div>
+=======
+                                 <input class="form-control" type="text" placeholder="To:">
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -94,13 +146,13 @@ function closeForm() {
                                  <div class="col-md-5">
                                     <div class="form-group">
                                        <span class="form-label">ONWARD DATE</span>
-                                       <input class="form-control" type="date">
+                                       <input class="form-control" type="date" required>
                                     </div>
                                  </div>
                                  <div class="col-md-5">
                                     <div class="form-group">
                                        <span class="form-label">RETURN DATE</span>
-                                       <input class="form-control" type="date">
+                                       <input class="form-control" type="date" required>
                                     </div>
                                  </div>
                                  <div class="col-md-2">
@@ -111,6 +163,7 @@ function closeForm() {
                               </div>
                            </div>
                         </div>
+>>>>>>> feature -
                      </form>
                   </div>
                </div>

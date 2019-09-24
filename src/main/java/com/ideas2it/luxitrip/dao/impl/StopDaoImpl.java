@@ -24,13 +24,14 @@ public class StopDaoImpl implements StopDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-	/**
+    
+    /**
      * Method to add stop details
      * @param Stop stop - stop object with all details to save
-     * @return int generated Id
+     * @return the Id
      * @throws Exception - carry message for the exception
      */
-	public int addStop(Stop stop) throws CustomException {
+    public void insertStop(Stop stop) throws CustomException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -60,21 +61,18 @@ public class StopDaoImpl implements StopDao {
      * @return stop object 
      * @throws Exception - carry message for the exception
      */
-	public Stop retriveStop(int stopId) throws CustomException {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			Stop stop = session.get(Stop.class,stopId);
-			return stop;
-		} catch (LazyInitializationException UserException) {
+    public Stop getStopById(int id) throws CustomException {
+        Session session = sessionFactory.openSession();
+        try {
+            return (session.get(Stop.class, id));
+        } catch (LazyInitializationException UserException) {
             throw new CustomException("No session available");
         } catch (OptimisticLockException UserException) {
             throw new CustomException("server busy try after sometime");
         } catch (HibernateException UserException) {
             throw new CustomException("Details cannot be added");
         }
-	    finally {
+        finally {
             try {
                 session.close();
             } catch (SessionException UserException) {
@@ -88,23 +86,21 @@ public class StopDaoImpl implements StopDao {
      * @param int deleteId - Id to delete the employee details
      * @throws UserException - carry message for the exception
      */
-    public void deleteStop(int deleteId) throws CustomException{
+    public void deleteStop(int id) throws CustomException{
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Stop stop = session.get(Stop.class, deleteId);
-            session.delete(stop);
+            session.delete(session.get(Stop.class, id));
             transaction.commit();
-	
-	    }catch (LazyInitializationException UserException) {
+        }catch (LazyInitializationException UserException) {
             throw new CustomException("No session available");
         } catch (OptimisticLockException UserException) {
             throw new CustomException("server busy try after sometime");
         } catch (HibernateException UserException) {
             throw new CustomException("Details cannot be deleted");
         }
-	    finally {
+        finally {
             try {
                 session.close();
             } catch (SessionException UserException) {
@@ -140,19 +136,16 @@ public class StopDaoImpl implements StopDao {
             }
         }
     }
-    
+
     /**
      * Method to get all employee details in a list
      * @return List of all employees
      * @throws UserException - carry message for the exception
      */
-    public List<Stop> displayAllStop() throws CustomException {
-        List<Stop> employees = null;
+    public List<Stop> getAllStops() throws CustomException {
         Session session = sessionFactory.openSession();
         try {
-            Criteria criteria = session.createCriteria(Stop.class).addOrder(Order.asc("name"));
-            employees = criteria.list();
-            return employees;
+            return (session.createCriteria(Stop.class).addOrder(Order.asc("name")).list());
         } catch (LazyInitializationException UserException) {
             throw new CustomException("No session available");
         } catch (OptimisticLockException UserException) {
@@ -160,8 +153,8 @@ public class StopDaoImpl implements StopDao {
         } catch (HibernateException UserException) {
             throw new CustomException("Details cannot be display");
         }
-	    finally {
-	        try {
+        finally {
+            try {
                 session.close();
             } catch (SessionException UserException) {
                 throw new CustomException("Session not properly closed");

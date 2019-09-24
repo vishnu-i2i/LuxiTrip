@@ -20,7 +20,7 @@ public interface StopDao {
      * @return stop object 
      * @throws Exception - carry message for the exception
      */
-	Stop retriveStop(int stopId) throws CustomException ;
+	public Stop getStopById(int id) throws CustomException;
 	
 	 /**
      * Method to delete stop details
@@ -41,5 +41,5 @@ public interface StopDao {
      * @return List of all employees
      * @throws UserException - carry message for the exception
      */
-    public List<Stop> displayAllStop() throws CustomException ;
+    public List<Stop> getAllStops() throws CustomException;
 }

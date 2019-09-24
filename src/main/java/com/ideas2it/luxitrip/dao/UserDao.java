@@ -44,7 +44,7 @@ public interface UserDao {
      * @throws CustomException
      */
     User getUserById(int userId) throws CustomException;
- 
+
     /**
      * Method used to count the number of Users in the database 
      * @return the users count in long

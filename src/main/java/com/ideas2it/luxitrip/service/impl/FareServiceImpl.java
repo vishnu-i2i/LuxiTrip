@@ -12,7 +12,7 @@ import com.ideas2it.luxitrip.service.FareService;
 @Service
 public class FareServiceImpl implements FareService {
 	
-	@Autowired
+    @Autowired
 	private FareDao fareDao;
 	
     /**
@@ -21,6 +21,7 @@ public class FareServiceImpl implements FareService {
      * @throws CustomException
      */
     public void createFare(Fare fare) throws CustomException {
+        fare.setStatus(true);
         fareDao.insertFare(fare);	
     }
     
@@ -30,10 +31,10 @@ public class FareServiceImpl implements FareService {
      * @throw CustomException
      */
     public void updateFare(Fare fare) throws CustomException {
-    	fareDao.updateFare(fare);
+        fareDao.updateFare(fare);
     }
     
-    /**
+    /** 
      * Method used to delete the value of fare by using the id 
      * @param fareId
      * @throws CustomException
@@ -43,13 +44,14 @@ public class FareServiceImpl implements FareService {
     		throw new CustomException("Unable to delete the Fare details ");
     	}
     }
+    
     /**
      * Method used to retrieve the list of fare objects into the database
      * @return the list of fares
      * @throws CustomException
      */
     public List<Fare> retrieveFares() throws CustomException {
-    	return fareDao.getFares();
+        return fareDao.getFares();
     }
     
     /**
@@ -59,7 +61,6 @@ public class FareServiceImpl implements FareService {
      * @throws CustomException
      */
     public Fare retrieveFareById(int id) throws CustomException {
-    	return fareDao.getFareById(id);
+        return fareDao.getFareById(id);
     }
-    
 }

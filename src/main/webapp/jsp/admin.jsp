@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html >
 <head>
 <script src="/css/Validation.js">
@@ -10,7 +11,7 @@
 </head>
 <body>
         <div style="display: in-line; float:right;">
-        <img class ="luxitrip"  src="4339.png">
+        <img class ="luxitrip"  src="../img/4339.png">
         </div>
 	<div class="navsidebar navbar-block navdark-grey navanimate-left"
 		style="display: in-line; float:right;" id="mySidebar">
@@ -20,14 +21,18 @@
 				name="operation">Register Buses</button>
 		</form>
 		<form action="" method="GET">
-			<button href="#" class="navbar-item navbutton" value="displayClients"
+					<button href="#" class="navbar-item navbutton" value="displayClients"
 				name="operation">Register Driver</button>
 		</form>
 		<form action="" method="post">
 			<button href="#" class="navbar-item navbutton"
 				value="Display Projects" name="operation">Route Entry</button>
 		</form>
-		<form action="logOut" method="POST">
+        <form action="displayUsers" method="get">
+            <button href="#" class="navbar-item navbutton" value="displayUsers"
+                  name="displayUsers">Display Users</button>
+        </form>
+		<form action="logout" method="POST">
 			<button href="#" class="navbar-item navbutton" value="logout"
 				name="operation">Logout</button>
 		</form>

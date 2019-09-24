@@ -31,7 +31,7 @@
     </ul>
   </div>
 </nav>
-  <form >
+  <form action = "ticketReservation" method = "post">
     <div>
       <c:forEach var="schedule" items="${schedules}">
         <div class="divbox ">
@@ -40,18 +40,22 @@
             <div class="font">
                 <c:out value = "${schedule.bus.operator}"/>
             </div></br>
+            
             <div class="font">
                 <c:out value = "${schedule.bus.type}"/>
             </div>
           </div>
+          
           <div class="col-sm-6">
             <div class="one font">
                 <c:out value = "${schedule.departureTime}"/>
             </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
             <div class="one">hrs</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="one font">
                 <c:out value = "${schedule.arrivalTime}"/>
             </div>
+         
          </div>
          <div class="col-sm-2">
             <div class="form-btn">
@@ -76,8 +80,7 @@
        <!-- Modal body -->
        <div class="modal-body">
           <h4 class="modal-title">Enter the Total No of Seats</h4>
-         <input type="number" min="1"/>
-         
+         <input type="number" value = "numberOfSeats" min="1"/>
        </div>
        
        <!-- Modal footer -->
@@ -90,7 +93,7 @@
       </div>
     </div>
   </div>
-  <input type = "hidden" name = "scheduleId" value = "${schedule.id}">
+  <input type = "hidden" name = "schedule" value = "${schedule}">
   </c:forEach>
     </div>
     </form>

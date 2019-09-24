@@ -1,6 +1,5 @@
 package com.ideas2it.luxitrip.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;    
@@ -9,18 +8,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
-import org.hibernate.Query;
 
 import com.ideas2it.luxitrip.dao.FareDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Fare;
-import com.ideas2it.luxitrip.model.User;
 
 @Repository
 public class FareDaoImpl implements FareDao {
     
-	@Autowired 
-	private SessionFactory sessionFactory;
+    @Autowired 
+    private SessionFactory sessionFactory;
 	
 	/**
 	 * Method used to insert the fare and its details into the database
@@ -109,8 +106,7 @@ public class FareDaoImpl implements FareDao {
 	    List<Fare> fares = new ArrayList<Fare>();
 		Session session = sessionFactory.openSession();
 		try{    
-		    Query query = session.createQuery("from Fare");
-		    fares = query.list();
+		    return (session.createQuery("from Fare", Fare.class).list());
 		} catch(HibernateException ex) {
 		    throw new CustomException("Unable to get all fares");
 		} finally {
@@ -119,8 +115,7 @@ public class FareDaoImpl implements FareDao {
 		    } catch(HibernateException ex) {
 		        throw new CustomException("Unable to close session");
 		    }
-		}
-        return fares;        
+		}       
     }
     
     /**
@@ -132,8 +127,7 @@ public class FareDaoImpl implements FareDao {
     public Fare getFareById(int id) throws CustomException {
 	    Session session = sessionFactory.openSession();
     	try {
-            Fare fare = session.get(Fare.class, id); 
-            return fare;
+    	    return (session.get(Fare.class, id));
         } catch(HibernateException ex) {
             throw new CustomException("The Fare is not registered");
         } finally {

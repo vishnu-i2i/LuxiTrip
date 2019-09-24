@@ -129,7 +129,11 @@ html,body {
       padding: 10px;
       border: none;
       border-radius: 5px; 
+<<<<<<< HEAD
       background: rgb(61, 157, 179);
+=======
+      background: #6b4724;
+>>>>>>> feature -
       font-size: 16px;
       color: #fff;
       cursor: pointer;

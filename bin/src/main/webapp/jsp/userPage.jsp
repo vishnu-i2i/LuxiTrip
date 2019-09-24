@@ -47,13 +47,6 @@
               </form>
           </td>
           <td>
-              <form action="displayUserToUpdate" method="post">
-                <input type="hidden" name="userId" value= "${user.id}" />
-                <button type="submit"target="_self" class="button editbuttonbackground" >
-                  <i class="fa fa-pencil-square-o"></i></button>            
-              </form>
-          </td>
-          <td>
               <form action="displayUser" method="post">
                 <input type="hidden" name="userId" value= "${user.id}" />
                 <button type="submit" target="_self" class="button viewbuttonBackground">

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ModelAttribute;   
 
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Stop;
@@ -24,6 +25,7 @@ public class StopController {
 
     @Autowired
     private StopService stopService;
+    
     /**
      * Method to add stop details
      * @param request-To get request from an user
@@ -32,23 +34,15 @@ public class StopController {
      * @throws ServletException - Error in request from and response for an user
      */
     @RequestMapping("/addStop")
-    public ModelAndView addStop(HttpServletRequest request,
-            HttpServletResponse response, Stop stop) throws ServletException, IOException {
-        ModelAndView model = new ModelAndView("Message");
+    public ModelAndView createStop(HttpServletRequest request, 
+            HttpServletResponse response, @ModelAttribute("stop")Stop stop) throws ServletException, IOException {
         try {
-            stopService.addStop(stop);
-            int id = stop.getId(); 
-            String message = "Stop ID : " + id;
-            model.addObject("message", message);
-            return model;
+            stopService.createStop(stop);
+            return new ModelAndView("Message", "message", "Stop Added Successfully");
         } catch(CustomException e) {
-           String message = e.getMessage();
-           logger.error(message);
-           request.getSession().setAttribute("message", message);
-           request.getRequestDispatcher("Message.jsp").forward(request,
-                   response);
+           logger.error(e.getMessage());
+           return new ModelAndView("Message", "message", e.getMessage());
         } 
-        return model;
     } 
 	
 	/**
@@ -60,22 +54,14 @@ public class StopController {
      */
     @RequestMapping("/displayStop")
     public ModelAndView displayStop(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException {
-        Stop stop = new Stop();
-        String id = request.getParameter("id");
-        ModelAndView model = new ModelAndView("displayStopDetails");
+            HttpServletResponse response) throws ServletException, IOException {
         try {
-            stop = stopService.displayStop(Integer.parseInt(id));
-            model.addObject("stop",stop);
-            return model;
+            return new ModelAndView("displayStopDetails", "stop", 
+                    stopService.retrieveStopById(Integer.parseInt(request.getParameter("id"))));
         } catch(CustomException e) {
-           String message = e.getMessage();
-           logger.error(message);
-           request.getSession().setAttribute("message", message);
-           request.getRequestDispatcher("Message.jsp").forward(request,
-                   response);
+            logger.error(e.getMessage());
+            return new ModelAndView("Message", "message", e.getMessage());
         }
-        return model;
     }
     
     /**
@@ -88,21 +74,13 @@ public class StopController {
     @RequestMapping("/deleteStop")
     public ModelAndView deleteStop(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        ModelAndView model = new ModelAndView("Message");
         try {
-            String id = request.getParameter("id");
-            stopService.deleteStop(Integer.parseInt(id));
-            String message = "Stop " + id + " Deleted";
-            model.addObject("message",message);
-            return model;
+            stopService.deleteStop(Integer.parseInt(request.getParameter("id")));
+            return new ModelAndView("Message", "message", "Stop deleted Successfully");
         } catch(CustomException e) {
-            String message = e.getMessage();
-            logger.error(message);
-            request.getSession().setAttribute("message", message);
-            request.getRequestDispatcher("Message.jsp").forward(request,
-                   response);
-        }
-        return model; 
+            logger.error(e.getMessage());
+            return new ModelAndView("Message", "message", e.getMessage());
+        } 
     }
     
     /**
@@ -115,18 +93,11 @@ public class StopController {
     @RequestMapping("/displayAllStop")
     public ModelAndView displayAllStop(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        ModelAndView model = new ModelAndView("AllEmployees");
         try {
-            List<Stop> allEmployees = stopService.displayAllStops();
-            model.addObject("allEmployeeList",allEmployees);
-            return model;
+            return new ModelAndView("AllEmployees", "stops", stopService.retrieveAllStops());
         } catch(CustomException e) {
-            String message = e.getMessage();
-            logger.error(message);
-            request.getSession().setAttribute("message", message);
-            request.getRequestDispatcher("Message.jsp").forward(request,
-                   response);
+            logger.error(e.getMessage());
+            return new ModelAndView("Message", "message", e.getMessage());
        }
-       return model;
     } 
 }

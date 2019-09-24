@@ -13,7 +13,7 @@ public interface StopService {
      * @return stop object
      * @throws CustomException - carry message for the exception
      */
-    int addStop(Stop stop) throws CustomException;
+    public void createStop(Stop stop) throws CustomException;
 
     /**
      * Method to display Stop details
@@ -22,7 +22,7 @@ public interface StopService {
      * @throws CustomException - carry message for the exception
      */
     Stop displayStop(int displayId) throws CustomException;
-
+    
     /**
      * Method to delete Stop details
      * @param int displayId - Id to display the details

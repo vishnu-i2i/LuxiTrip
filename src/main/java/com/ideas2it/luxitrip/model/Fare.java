@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.ideas2it.luxitrip.model.Stop;
+//import com.ideas2it.luxitrip.model.Stop;
 
 @Entity
 @Table(name = "fare")
