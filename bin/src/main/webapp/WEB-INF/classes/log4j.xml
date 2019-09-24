@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="CONSOLE"
+		class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{dd/MM/yy hh:mm:ss:sss z}] %5p %c{2}: %m%n" />
+		</layout>
+	</appender>
+	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</appender>
+	<appender name="rollingFile"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/home/ubuntu/logs/log.log" />
+		<param name="MaxFileSize" value="100KB" />
+		<param name="MaxBackupIndex" value="1000" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{dd-MMM-yyyy HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n" />
+		</layout>
+	</appender>
+	<appender name="ROLL"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/home/ubuntu/logs/log.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{dd-MMM-yyyy HH:mm:ss,SSS} [%t] %c %x%n %-5p %m%n" />
+		</layout>
+	</appender>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="rollingFile" />
+		<appender-ref ref="ROLL" />
+	</root>
+</log4j:configuration>

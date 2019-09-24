@@ -40,5 +40,5 @@ public interface RouteDao {
      * Deletes the route by setting the status to false
      * @param Route object which is to be deleted
      */
-    public void deleteRoute(Route route) throws CustomException;
+    public void deleteRoute(int id) throws CustomException;
 }

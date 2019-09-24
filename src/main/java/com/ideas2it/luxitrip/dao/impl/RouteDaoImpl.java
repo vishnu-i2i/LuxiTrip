@@ -112,12 +112,12 @@ public class RouteDaoImpl implements RouteDao{
      * Deletes the route by setting the status to false
      * @param Route object which is to be deleted
      */
-    public void deleteRoute(Route route) throws CustomException{
+    public void deleteRoute(int id) throws CustomException{
         Session session = sessionFactory.openSession();
         Transaction transact = null;
         try {
             transact = session.beginTransaction();
-            session.update(route);
+            session.update();
             transact.commit();
         } catch (HibernateException exception) {
             if (transact!=null) {

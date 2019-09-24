@@ -77,6 +77,18 @@ public class RouteController {
         }
         return model; 
     }
+    /**
+     * 
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     * @throws ServletException
+     */
+    public ModelAndView displayBusBySourceAndDestination(HttpServletRequest request, 
+            HttpServletResponse response) throws IOException, ServletException {
+        return null;
+    }
   
  
     /** 

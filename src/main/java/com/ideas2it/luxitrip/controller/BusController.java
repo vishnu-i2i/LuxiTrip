@@ -24,10 +24,20 @@ public class BusController {
     @Autowired
     private BusService busService;
 
+    @RequestMapping("/createBus")
+    public ModelAndView createBus() throws ServletException, IOException {
+        Bus bus = new Bus();
+        return new ModelAndView("registerBus", "bus", bus);
+    }
     /**
      * Gets the bus details from the user in jsp page and sets it the 
      * bus object which is added to the buses list
-     * @param request contains the bus details to be added to the object
+     * @param request {@link} HttpServletRequest
+     * @param response {@link} HttpServletResponse
+     * @param bus contains details of the registering bus
+     * @return redirect to display all buses page with added entry
+     * @throws IOException
+     * @throws ServletException
      */
     @RequestMapping("/registerBus")
     public ModelAndView registerBus(HttpServletRequest request, 
@@ -58,7 +68,7 @@ public class BusController {
     @RequestMapping("/fetchBus")
     public ModelAndView fetchBus(HttpServletRequest request, 
             HttpServletResponse response) throws IOException, ServletException {
-        ModelAndView model = new ModelAndView("AddBus");
+        ModelAndView model = new ModelAndView("admin");
         try {
             Bus bus = 
                 busService.retrieveBusById(Integer.parseInt(request.getParameter("id")));
