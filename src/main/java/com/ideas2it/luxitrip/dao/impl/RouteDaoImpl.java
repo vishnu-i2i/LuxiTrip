@@ -117,7 +117,7 @@ public class RouteDaoImpl implements RouteDao{
         Transaction transact = null;
         try {
             transact = session.beginTransaction();
-            session.update();
+            session.update(id);
             transact.commit();
         } catch (HibernateException exception) {
             if (transact!=null) {
