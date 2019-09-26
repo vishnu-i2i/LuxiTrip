@@ -26,5 +26,9 @@
 /bin/
 /.settings/
 
+# Maven Built target folder
+/target/
+/.settings/
+>>>>>>> 526ecec68155b0de881dfe5d851f7cfc0c81e6c9
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

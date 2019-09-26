@@ -3,6 +3,8 @@ package com.ideas2it.luxitrip.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.springframework.beans.factory.annotation.Autowired;    
 import org.hibernate.Session;    
 import org.hibernate.SessionFactory;    
@@ -22,20 +24,22 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-	/**
-	 * Method used to register the userDetail from user into the database 
-	 * @param user
-	 * @throws CustomException
-	 */
-	public void insertUser(User user)throws CustomException {
-	    Session session = sessionFactory.openSession();
-	    Transaction transaction = null;
-	    try {
+    /**
+     * Method used to register the userDetail from user into the database 
+     * @param user
+     * @throws CustomException
+     */
+    public void insertUser(User user)throws CustomException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
-        } catch (HibernateException ex) {
+        }  catch (HibernateException ex) {
             throw new CustomException("Unable to add " + user.getId() + " value" + ex);
+        } catch(PersistenceException ex) {
+            throw new CustomException("UserName is already exists please try another name");
         } finally {
             try {
                 session.close(); 
@@ -72,12 +76,10 @@ public class UserDaoImpl implements UserDao {
 	 * Method used to get the List of users from the database
 	 * @throws CustomException
 	 */
-    public List<User> getUsers() throws CustomException {
-	    List<User> users = new ArrayList<User>();
+	public List<User> getUsers() throws CustomException {
 	    Session session = sessionFactory.openSession();
 	    try{    
-	        Query query = session.createQuery("from User");
-	        users = query.list();
+	        return (session.createQuery("from User", User.class).list());
 	    } catch(HibernateException ex) {
 	        throw new CustomException("Unable to get all users");
 	    } finally {
@@ -86,8 +88,7 @@ public class UserDaoImpl implements UserDao {
 	        } catch(HibernateException ex) {
 	            throw new CustomException("Unable to close session");
 	        }
-	    }
-	    return users;        
+	    }        
 	}
 	 
     /**
@@ -97,10 +98,9 @@ public class UserDaoImpl implements UserDao {
      * @throws CustomException
      */
     public User getUserById(int id) throws CustomException {
-        User user = null;
 	    Session session = sessionFactory.openSession();
     	try {
-            user = (User) session.get(User.class, id); 
+            return (session.get(User.class, id)); 
         } catch(HibernateException ex) {
             throw new CustomException("The user is not registered");
         } finally {
@@ -109,8 +109,7 @@ public class UserDaoImpl implements UserDao {
             } catch(HibernateException ex) {
                 throw new CustomException("Unable to close session");
             }
-        }
-        return user;        
+        }       
     }
 
     /**
@@ -119,12 +118,12 @@ public class UserDaoImpl implements UserDao {
      * @return the user detail 
      * @throws CustomException
      */
-    public User getUserByName(String userName) throws CustomException {
-        User user = null;
+    public User getUserByName(String name) throws CustomException {
         Session session = sessionFactory.openSession();
+        User user = null;
         try {
             Query query = session.createQuery("from User u where u.name = : userName");
-            query.setParameter("userName", userName);
+            query.setParameter("userName", name);
             user = (User) query.uniqueResult();
         } catch(HibernateException ex) {
             throw new CustomException("The user is not registered");

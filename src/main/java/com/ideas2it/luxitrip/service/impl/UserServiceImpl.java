@@ -1,19 +1,19 @@
 package com.ideas2it.luxitrip.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;  
 
-import com.ideas2it.luxitrip.dao.impl.UserDaoImpl;
-import com.ideas2it.luxitrip.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ideas2it.luxitrip.dao.UserDao;
 import com.ideas2it.luxitrip.exception.CustomException;
+import com.ideas2it.luxitrip.model.User;
 import com.ideas2it.luxitrip.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserDaoImpl userDao;
+	private UserDao userDao;
 	
 	/**
 	 * Method used to create the User with the User detail 
@@ -52,46 +52,45 @@ public class UserServiceImpl implements UserService {
      * @return the list of users
      * @throws CustomException
      */
-	public List<User> retrieveUsers() throws CustomException {
-		return userDao.getUsers();
-	}
+    public List<User> retrieveUsers() throws CustomException {
+        return userDao.getUsers();
+    }
 	
-	/**
-	 * Method used to retrieve the User in the given userId
-	 * @param userId
-	 * @return the given User in the userId
-	 * @throws CustomException
-	 */
-	public User retrieveUserById(int userId) throws CustomException {
-		return userDao.getUserById(userId);
-	}
+    /**
+     * Method used to retrieve the User in the given userId
+     * @param userId
+     * @return the given User in the userId
+     * @throws CustomException
+     */
+    public User retrieveUserById(int userId) throws CustomException {
+        return userDao.getUserById(userId);
+    }
 
     /**
-	 * Method used to retrieve the User in the given userName 
-	 * @param user Name
-	 * @return the given User in the user name
-	 * @throws CustomException
-	 */
-	public User retrieveUserByName(String userName) throws CustomException {
-		return userDao.getUserByName(userName);
-	}
+     * Method used to retrieve the User in the given userName 
+     * @param user Name
+     * @return the given User in the user name
+     * @throws CustomException
+     */
+    public User retrieveUserByName(String userName) throws CustomException {
+        return userDao.getUserByName(userName);
+    }
 
     /**
-	 * Method used to validate the user whether he is a admin or user to redirect to the specific page 
-	 * @param User details 
-	 * @param password to validate 
-	 * @return the user role
-	 * @throws CustomException
-	 */
-	public String redirectPage(User user, String password) throws CustomException {
-		if(user.getPassword().equals(password)) {
-			if(user.getRole().equals("User")) {
-				return "User";
-			} else if(user.getRole().equals("Admin")) {
-				return "Admin";
-			}
-		}
-	    return "Invalid";
-	}
-
+     * Method used to validate the user whether he is a admin or user to redirect to the specific page 
+     * @param User details 
+     * @param password to validate 
+     * @return the user role
+     * @throws CustomException
+     */
+    public String redirectPage(User user, String password) throws CustomException {
+        if(user.getPassword().equals(password)) {
+            if(user.getRole().equals("User")) {
+                return "User";
+            } else if(user.getRole().equals("Admin")) {
+                return "Admin";
+            }
+        }
+        throw new CustomException("User Name and Password Wrong");
+    }
 }

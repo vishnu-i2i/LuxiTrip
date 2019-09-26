@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://java.sun.com/xml/ns/javaee"
+<<<<<<< HEAD
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
 	<display-name>Spring MVC CRUD Example</display-name>
@@ -18,4 +19,36 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+=======
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
+     <display-name>Spring MVC CRUD Example</display-name>
+  <servlet>
+   <servlet-name>SpringMVC</servlet-name>
+   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   <init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/SpringMVC-servlet.xml</param-value>
+   </init-param>
+   <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>SpringMVC</servlet-name>
+   <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+ <filter>
+    <filter-name>AuthenticationFilter</filter-name>
+    <filter-class>com.ideas2it.luxitrip.filter.AuthenticationFilter</filter-class>
+</filter>
+  
+<filter-mapping>
+    <filter-name>AuthenticationFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+   
+    <welcome-file-list>
+        <welcome-file>/jsp/login.jsp</welcome-file>
+    </welcome-file-list>    
+>>>>>>> 526ecec68155b0de881dfe5d851f7cfc0c81e6c9
 </web-app>
