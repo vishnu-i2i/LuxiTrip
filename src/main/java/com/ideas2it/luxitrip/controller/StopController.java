@@ -94,10 +94,11 @@ public class StopController {
     public ModelAndView displayAllStop(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
         try {
-            return new ModelAndView("AllEmployees", "stops", stopService.retrieveAllStops());
+            return new ModelAndView("userIndex", "stops", stopService.retrieveAllStops());
         } catch(CustomException e) {
             logger.error(e.getMessage());
             return new ModelAndView("Message", "message", e.getMessage());
        }
     } 
+    
 }

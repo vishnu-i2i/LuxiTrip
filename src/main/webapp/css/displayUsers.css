@@ -1,29 +1,24 @@
 body {
-background-image: url('bus.jpeg');
+background-image: url('../img/bus.jpeg');
 background-size: cover;
 background-repeat: repeat;
 margin: 0px 25px 0px 25px;
 }
-
 .divbox {
-background : #e6e6e6;
-margin-left:70px;
+margin-left:25px;
 margin-top:25px;
-margin-right:0px;
-margin-bottom:10px;
+margin-right:15px;
+margin-bottom:15px;
 text-align: left;
-color: #4AB3C6;
-box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-width: 90%;
-height:100px;
+background: #8fa7c1;
+border-radius: 15px;
+width: 180px;
+height:240px;
 padding: 5px 0px 5px 5px;
 display: inline-block;
 size : 19px;
 }
 .divfieldset {
-width:100%;
-height:100%;
 border: none;
 }
 .divfieldsetlegend {
@@ -82,38 +77,4 @@ border: none;
 transform: scale(1.3);
 color: black;
 background: #2da7ed;
-}
-.font{
-font-size:20px;
-}
-.one {
-display: inline-block;
-}
-
-.two {
-padding-left : 40px;
-}
-.form-btn {
-	padding-top: 17px;
-        padding-left: 90px;
-	height:50px;
-	margin: 0px;
-	align-items : right;
-}
-
-.submit-btn {
-    text-align: center;    
-    margin: 0px;
-    border: none;
-    background: rgb(74, 179, 198);
-    text-transform: capitalize;
-    display: flex;
-    border-radius: 2px;
-    width: 124;
-    height: 50px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #fff;
-    transition: all 0.2s linear;
-
 }

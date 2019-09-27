@@ -42,4 +42,6 @@ public interface FareService {
      * @throws CustomException
      */
     public Fare retrieveFareById(int id) throws CustomException;
+     
+    
 }

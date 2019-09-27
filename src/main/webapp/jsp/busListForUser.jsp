@@ -4,7 +4,7 @@
 <html>
   <head>
     
-    <link rel="stylesheet" type="text/css" href="busListForUser.css" >
+    <link rel="stylesheet" type="text/css" href="/css/busListForUser.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,7 +80,7 @@
        <!-- Modal body -->
        <div class="modal-body">
           <h4 class="modal-title">Enter the Total No of Seats</h4>
-         <input type="number" value = "numberOfSeats" min="1"/>
+         <input type="number" name = "numberOfSeats" min="1" max="${schedule.bus.capacity}"/>
        </div>
        
        <!-- Modal footer -->
@@ -93,9 +93,10 @@
       </div>
     </div>
   </div>
-  <input type = "hidden" name = "schedule" value = "${schedule}">
+  <input type = "hidden" name = "scheduleId" value = "${schedule.id}">
   </c:forEach>
     </div>
     </form>
   </body>
 </html>
+

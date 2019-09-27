@@ -38,5 +38,7 @@ public interface RouteService {
      * @param: Route Object which is to be deleted
      */
     public void deleteRoute(int id) throws CustomException;
+    
+    int calculateDistances(int sourceId, int destinationId) throws CustomException;
 
 }

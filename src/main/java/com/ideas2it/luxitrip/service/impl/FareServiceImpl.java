@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 import com.ideas2it.luxitrip.dao.FareDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Fare;
+import com.ideas2it.luxitrip.model.Stop;
 import com.ideas2it.luxitrip.service.FareService;
+import com.ideas2it.luxitrip.service.StopService;
 
 @Service
 public class FareServiceImpl implements FareService {
 	
     @Autowired
 	private FareDao fareDao;
+    @Autowired 
+    private StopService stopService;
 	
     /**
      * Method used to create the Fare details into the database 

@@ -133,6 +133,7 @@ public class UserDaoImpl implements UserDao {
                 throw new CustomException("unable to close Session");
             }
         }
+        System.out.println(user + "dao");
         return user;
     }
     

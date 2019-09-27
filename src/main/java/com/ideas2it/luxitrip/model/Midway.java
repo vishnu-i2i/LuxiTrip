@@ -25,6 +25,17 @@ public class Midway {
     @Column(name = "time")
     private Date time;
 
+    @Column(name = "distance")
+    private int distance;
+    
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
     public int getId() {
         return id;
     }
@@ -51,6 +62,6 @@ public class Midway {
 
     @Override
     public String toString() {
-        return "Midway [id=" + id + ", stop=" + stop + ", time=" + time + "]";
+        return "Midway [id=" + id + ", stopID=" + stop + ", time=" + time + "]";
     }
 }

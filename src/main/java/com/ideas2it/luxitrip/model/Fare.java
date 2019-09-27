@@ -12,20 +12,24 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "fare")
-public class Fare {    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", length=11, nullable=false, unique=true)
-    private int id;
-    
-    @ManyToOne
-    private Stop destination;
-    
-    @ManyToOne
-    private Stop source;
-    
-    @Column(name = "price")
-    private float price;
+public class Fare {
+   
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+	
+	@ManyToOne
+	private Stop source;
+	
+	@ManyToOne
+	private Stop destination;
+	
+	@Column(name = "price")
+	private int price;
+	
+	@Column(name = "status")
+	private boolean status;
 
     public int getId() {
         return id;

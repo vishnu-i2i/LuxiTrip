@@ -3,6 +3,8 @@ package com.ideas2it.luxitrip.service;
 import java.util.List;
 
 import com.ideas2it.luxitrip.exception.CustomException;
+import com.ideas2it.luxitrip.model.Bus;
+import com.ideas2it.luxitrip.model.Stop;
 import com.ideas2it.luxitrip.model.User;
 
 public interface UserService {
@@ -59,5 +61,9 @@ public interface UserService {
 	 * @throws CustomException
 	 */
 	String redirectPage(User user, String password) throws CustomException;
+	
+	List<Bus> retrieveBuses() throws CustomException;
+	
+	List<Stop> retrieveAllStops() throws CustomException;
 
 }

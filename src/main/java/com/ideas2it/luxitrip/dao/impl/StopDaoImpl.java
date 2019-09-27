@@ -3,6 +3,7 @@ package com.ideas2it.luxitrip.dao.impl;
 import java.util.List;
 
 import javax.persistence.OptimisticLockException;
+import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Repository;
 import com.ideas2it.luxitrip.dao.StopDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Stop;
+import com.ideas2it.luxitrip.model.Midway;
+import com.ideas2it.luxitrip.dao.StopDao;
 
 @Repository
 public class StopDaoImpl implements StopDao {
@@ -161,5 +164,5 @@ public class StopDaoImpl implements StopDao {
             }
         }
     }
-
+   
 }

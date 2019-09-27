@@ -25,10 +25,12 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = httpRequest.getSession(false);
         boolean isLoggedIn = (session != null && session.getAttribute("userId") != null);
 		String loginURI = httpRequest.getContextPath() + "/login"; 
+		String signUpURI = httpRequest.getContextPath() + "/registerUser";
         boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
+		boolean isSignUpRequest = httpRequest.getRequestURI().equals(signUpURI);
         if(isLoggedIn) {
             chain.doFilter(request, response);  
-        } else if(isLoginRequest) {
+        } else if(isLoginRequest || isSignUpRequest) {
             chain.doFilter(request, response);
         } else {
             RequestDispatcher dispatcher = httpRequest.getRequestDispatcher

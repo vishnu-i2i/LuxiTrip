@@ -14,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.FetchType;
+
 @Entity
 @Table(name = "route")
+@Proxy(lazy = false)
 public class Route {
     
     @Id
@@ -29,9 +34,9 @@ public class Route {
     @ManyToOne
     private Stop destination;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="route_id")
-    private Set<Schedule> schedules;
+    private Set<Schedule> schedule;
 
     public int getId() {
         return id;
@@ -67,7 +72,7 @@ public class Route {
 
     @Override
     public String toString() {
-        return "Route [id=" + id + ", origin=" + origin + ", destination=" 
-                + destination + "]";
+        return "Route [id=" + id + ", origin=" + origin + ", destination=" + destination 
+                + "]";
     }
 }

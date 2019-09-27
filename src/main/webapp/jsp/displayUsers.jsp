@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../css/Users.css" >
+    <link rel="stylesheet" type="text/css" href="../css/displayUsers.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div>
-      <c:forEach var="employee" items="${employees}">
+      <c:forEach var="user" items="${users}">
         <div class="divbox">
           <fieldset class="divfieldset">
             <legend class="divfieldsetlegend">
@@ -28,28 +29,13 @@
                 </td>
               </tr>
               <tr>
-              <td>Mobile Number</td>
-              <td>
-                <c:out value="${user.number}" />
-              </td>
-              </tr>
-              <tr>
-                <td>Email</td>
+                <td>Phone</td>
                 <td>
-                  <c:out value="${user.emailId}" />
-                </td>
-              </tr>
-              <tr>
-                <td>Role</td>
-                <td>
-                  <c:out value="${user.role}" />
+                  <c:out value="${user.number}" />
                 </td>
               </tr>
             </table>
-            <form action="displayUsers" method="get">
-              <center>
-                <td> <input type="hidden" name="id" value= "${user.id}" /></td>              </center>
-            </form>
+            
         </div>
         </fieldset>
       </c:forEach>

@@ -1,6 +1,7 @@
 package com.ideas2it.luxitrip.controller;
 
-import java.io.IOException;
+
+import java.io.IOException; 
 import java.util.List;
 
 import javax.servlet.ServletException; 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
   
 import com.ideas2it.luxitrip.exception.CustomException; 
-
+import com.ideas2it.luxitrip.model.Route; 
 import com.ideas2it.luxitrip.model.Route;
 import com.ideas2it.luxitrip.service.RouteService; 
 import com.ideas2it.luxitrip.service.StopService;
@@ -33,12 +34,11 @@ public class RouteController {
           HttpServletResponse response, Route route) 
           throws IOException, ServletException { 
       try {
-          route.setOrigin(stopService.displayStop
+          route.setOrigin(stopService.retrieveStopById
                       (Integer.parseInt(request.getParameter("origin"))));
-          route.setDestination(stopService.displayStop
-                      (Integer.parseInt(request.getParameter("destination"))));    
-          routeService.createRoute(route); 
-          return displayAllRoutes(request,response); 
+          route.setDestination(stopService.retrieveStopById
+                      (Integer.parseInt(request.getParameter("destination"))));
+          routeService.createRoute(route); return displayAllRoutes(request,response); 
       } catch (CustomException exception) { 
           return (new ModelAndView("ErrorPage","error",exception)); 
       } 
@@ -78,7 +78,6 @@ public class RouteController {
         }
         return model; 
     }
-  
  
     /** 
      * Soft deletes the Route from the list of routes by geting the object from the
@@ -93,5 +92,25 @@ public class RouteController {
        } catch (CustomException exception) { 
            return (new ModelAndView("ErrorPage","error",exception)); 
        } 
+    }
+    
+    /**
+     * Method used to calculate the distance between the source and destinaion
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    @RequestMapping("/calculateDistances")
+    public ModelAndView fareCalculation(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        try {
+            routeService.calculateDistances(Integer.parseInt(request.getParameter("source")), 
+                    Integer.parseInt(request.getParameter("destination")));
+            return new ModelAndView("Message", "message", "The price details");
+        } catch(CustomException ex) {
+            return new ModelAndView("Message", "message", "error");
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.ideas2it.luxitrip.controller;
 
 import java.io.IOException;
 
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ideas2it.luxitrip.service.UserService;
 import com.ideas2it.luxitrip.model.User;
+import com.ideas2it.luxitrip.model.Bus;
+import com.ideas2it.luxitrip.model.Stop;
 import com.ideas2it.luxitrip.exception.CustomException;
 
 @Controller
@@ -34,17 +37,26 @@ public class UserController {
     @RequestMapping("/login")
     public ModelAndView validateUser(HttpServletRequest request, 
         HttpServletResponse response) throws ServletException, IOException {
+        ModelAndView model = new ModelAndView();
         try {
             User user = userService.retrieveUserByName(request.getParameter("userName"));
             String role = userService.redirectPage(user, request.getParameter("password")); 
             if(role.equals("User")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", user.getId());
-                return new ModelAndView("userIndex", "user", user);
+                List<Stop> stops = userService.retrieveAllStops();
+                model.addObject("stops", stops);
+                model.addObject("user", user);
+                model.setViewName("userIndex");
+                return model;
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", user.getId());
-                return new ModelAndView("admin", "user", user);
+                List<Bus> buses = userService.retrieveBuses();
+                model.addObject("buses", buses);
+                model.addObject("user", user);
+                model.setViewName("adminpage");
+                return model;
             }
         } catch(CustomException ex) {
             return new ModelAndView("Message", "message", ex.getMessage());
@@ -63,6 +75,7 @@ public class UserController {
     public ModelAndView registerUser(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         User user = new User();
+        ModelAndView model = new ModelAndView();
         try {
             user.setName(request.getParameter("name"));
             user.setNumber(request.getParameter("number"));
@@ -70,7 +83,15 @@ public class UserController {
             user.setEmailId(request.getParameter("emailId"));
             user.setRole(request.getParameter("role"));
             userService.createUser(user);
-            return new ModelAndView("Message", "message", "User Added Successfully");
+            if(user.getRole().equals("Driver") || user.getRole().equals("Admin")) {
+                List<Bus> buses = userService.retrieveBuses();
+                model.addObject("buses", buses);
+                model.addObject("user", user);
+                model.setViewName("adminpage");
+                return model;
+            } else {
+                return new ModelAndView("login", "message", "User register Successfully");
+            }
         } catch (CustomException ex) {
             return new ModelAndView("login",  "message", ex.getMessage());
         }
@@ -97,7 +118,7 @@ public class UserController {
     @RequestMapping("/displayUsers")
     public ModelAndView displayUsers() throws ServletException, IOException {
         try {
-            return new ModelAndView("userPage", "users", userService.retrieveUsers());
+            return new ModelAndView("displayUsers", "users", userService.retrieveUsers());
         } catch (CustomException ex) {
             return new ModelAndView("Message", "message", ex.getMessage());
         }
@@ -130,13 +151,24 @@ public class UserController {
      * @throws IOException
      */
     @RequestMapping("/updateUser")
-    public ModelAndView updateUser(@ModelAttribute("user")User user) 
-            throws ServletException, IOException {
-        System.out.println("hello");
-        System.out.println(user);
+    public ModelAndView updateUser(HttpServletRequest request, 
+            HttpServletResponse response, @ModelAttribute("user")User user) throws ServletException, IOException {
+        ModelAndView model = new ModelAndView();
         try {
-            userService.updateUser(user);
-            return new ModelAndView("userIndex", "message", "User updated successfully");
+            System.out.println(user);
+            if(user.getRole().equals("Admin")) {
+                List<Bus> buses = userService.retrieveBuses();
+                model.addObject("buses", buses);
+                model.addObject("user", user);
+                model.setViewName("adminpage");
+                return model;
+            } else if(user.getRole().equals("User")){
+                model.addObject("user", user);
+                model.setViewName("userIndex");
+                return model;
+            } else {
+                return new ModelAndView("Message", "message", "Driver Added Successfully");
+            }
         } catch(CustomException ex) {
             return new ModelAndView("Message", "message", ex.getMessage());
         }

@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ideas2it.luxitrip.dao.UserDao;
+import com.ideas2it.luxitrip.model.Bus;
+import com.ideas2it.luxitrip.model.Stop;
 import com.ideas2it.luxitrip.model.User;
 import com.ideas2it.luxitrip.exception.CustomException;
+import com.ideas2it.luxitrip.service.BusService;
+import com.ideas2it.luxitrip.service.StopService;
 import com.ideas2it.luxitrip.service.UserService;
 
 @Service
@@ -15,6 +19,12 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private UserDao userDao;
+    
+    @Autowired
+    private BusService busService;
+    
+    @Autowired
+    private StopService stopService;
 	
     /**
      * Method used to create the User with the User detail 
@@ -48,6 +58,7 @@ public class UserServiceImpl implements UserService {
         user.setName(updatedUser.getName());
         user.setEmailId(updatedUser.getEmailId());
         user.setNumber(updatedUser.getNumber());
+        user.setStatus(true);
 		userDao.updateUser(user);
     }
 	
@@ -96,5 +107,13 @@ public class UserServiceImpl implements UserService {
             }
         }
         throw new CustomException("User Name and Password Wrong");
+    }
+    
+    public List<Bus> retrieveBuses() throws CustomException {
+        return busService.retrieveAllBuses();   
+    }
+    
+    public List<Stop> retrieveAllStops() throws CustomException {
+        return stopService.retrieveAllStops();
     }
 }

@@ -1,20 +1,26 @@
 package com.ideas2it.luxitrip.dao.impl;
 
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.PersistenceException;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.HibernateException; 
+import org.hibernate.query.Query;
+import org.hibernate.Session; 
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.luxitrip.dao.BusDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
+import com.ideas2it.luxitrip.model.Seat;
+import com.ideas2it.luxitrip.model.User;
 
 @Repository
 public class BusDaoImpl implements BusDao{

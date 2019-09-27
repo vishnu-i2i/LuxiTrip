@@ -2,7 +2,6 @@ package com.ideas2it.luxitrip.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,13 +49,11 @@ public class Seat {
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-
 	public String getSeatNumber() {
 		return seatNumber;
 	}
 	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
-
 	}
 	public String getType() {
 		return type;

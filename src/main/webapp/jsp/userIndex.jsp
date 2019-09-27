@@ -68,7 +68,7 @@
     <form:input type="tel" value="${user.number}" path="number"/>
     <label><b>Email</b></label>
     <form:input type="email" value="${user.emailId}" path="emailId" /> 
-    
+    <form:input type="hidden" value="${user.role}" path="role"/>
     <button type="submit" class="btn">Edit</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form:form>
@@ -95,33 +95,26 @@ function closeForm() {
                            <div class="col-md-3">
                               <div class="form-group">
                                  <span class="form-label">Source</span>
-                                 <select name="source">
+                                 <select name = "source">
                                  <c:forEach var="stop" items="${stops}">
-                    				<option value="${stop}">
-                        			  <c:out value="${stop.name}"
+                    				       <option value="${stop.id}">
+                        			      <c:out value="${stop.name}"/>
                                     </option>
                                  </c:forEach>
+                                 </select>
                               </div>
                            </div>
                            <div class="row no-margin">
                            <div class="col-md-3">
                               <div class="form-group">
                                  <span class="form-label">Destination</span>
-                                 <select name="destination">
+                                 <select name = "destination">
                                  <c:forEach var="stop" items="${stops}">
-                    				<option value="${stop}">
-                        			  <c:out value="${stop.name}"
+                    				       <option value="${stop.id}">
+                        			      <c:out value="${stop.name}"/>
                                     </option>
                                  </c:forEach>
-                              </div>
-                           </div>
-                           <div class="col-md-2">
-                             <div class="form-btn">
-                               <button class="submit-btn">Check availability</button>
-                             </div>
-                           </div>
-                         </div>
-                                 <input class="form-control" type="text" placeholder="To:">
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -129,13 +122,13 @@ function closeForm() {
                                  <div class="col-md-5">
                                     <div class="form-group">
                                        <span class="form-label">ONWARD DATE</span>
-                                       <input class="form-control" type="date" required>
+                                       <input class="form-control" type="date" >
                                     </div>
                                  </div>
                                  <div class="col-md-5">
                                     <div class="form-group">
                                        <span class="form-label">RETURN DATE</span>
-                                       <input class="form-control" type="date" required>
+                                       <input class="form-control" type="date">
                                     </div>
                                  </div>
                                  <div class="col-md-2">

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "schedule")
+@Proxy(lazy = false)
 public class Schedule {
     
     @Id

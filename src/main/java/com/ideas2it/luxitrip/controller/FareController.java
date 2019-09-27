@@ -122,4 +122,5 @@ public class FareController {
 	        return new ModelAndView("error", "error", ex.getMessage());
 	    }
 	}
+   
 }

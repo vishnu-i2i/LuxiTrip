@@ -54,4 +54,6 @@ public class StopServiceImpl implements StopService {
     public List<Stop> retrieveAllStops() throws CustomException {
         return stopDao.getAllStops();
     }
+    
+    
 }
