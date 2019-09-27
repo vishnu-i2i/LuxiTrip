@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.util.ArrayList;
 
 import com.ideas2it.luxitrip.model.Seat;
@@ -43,7 +46,8 @@ public class Bus {
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="bus_id")
-    private List<Seat> seats = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Seat> seats;
 
     public int getId() {
         return id;

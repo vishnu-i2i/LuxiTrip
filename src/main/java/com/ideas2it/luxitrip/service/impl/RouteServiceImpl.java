@@ -46,7 +46,7 @@ public class RouteServiceImpl implements RouteService{
         List<Route> routes = routeDao.getAllRoutes();
         for(Route route : routes) {
             for(Schedule schedule : route.getSchedule()) {
-                for(Midway midway : schedule.getMidway()) {
+                for(Midway midway : schedule.getMidways()) {
                     if(midway.getStop().getId() == sourceId) {
                         sourceDistance = midway.getDistance();
                     } else if(midway.getStop().getId() == destinationId) {

@@ -1,7 +1,7 @@
 package com.ideas2it.luxitrip.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "schedule")
@@ -36,9 +40,10 @@ public class Schedule {
     
     @ManyToOne
     private User driver;
-    
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+
+    @OneToMany( cascade=CascadeType.ALL)
     @JoinColumn(name="schedule_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Midway> midways;
     
     public int getId() {
