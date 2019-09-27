@@ -160,6 +160,7 @@
     </div>
     <input type="hidden" value="Driver" name="password"/>
     <input type="hidden" value="Driver" name="role"/>
+    <input type="hidden" value="${user.id}" name="userId"/>
     <div class="modal-footer">
     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
     <div class="btn-group" role="group">

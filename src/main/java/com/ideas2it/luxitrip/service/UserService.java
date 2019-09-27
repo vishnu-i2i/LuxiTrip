@@ -39,11 +39,11 @@ public interface UserService {
 	
 	/**
 	 * Method used to retrieve the user and its details in the given Specific UserId
-	 * @param userId
+	 * @param id
 	 * @return the user and its details
 	 * @throws CustomException
 	 */
-	User retrieveUserById(int userId) throws CustomException;
+	User retrieveUserById(int id) throws CustomException;
 
     /**
 	 * Method used to retrieve the User in the given userName 
@@ -62,8 +62,18 @@ public interface UserService {
 	 */
 	String redirectPage(User user, String password) throws CustomException;
 	
+	/**
+	 * Method used to retrieve the list of buses from the bus service
+	 * @return the list of buses
+	 * @throws CustomException
+	 */
 	List<Bus> retrieveBuses() throws CustomException;
 	
+	/**
+	 * Method used to retrieve the list of stops from the stopService class
+	 * @return
+	 * @throws CustomException
+	 */
 	List<Stop> retrieveAllStops() throws CustomException;
 
 }

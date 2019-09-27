@@ -13,14 +13,18 @@ import org.springframework.stereotype.Service;
 import com.ideas2it.luxitrip.dao.ReservationDao;
 import com.ideas2it.luxitrip.exception.CustomException;
 import com.ideas2it.luxitrip.model.Bus;
+import com.ideas2it.luxitrip.model.Fare;
 import com.ideas2it.luxitrip.model.Midway;
 import com.ideas2it.luxitrip.model.Reservation;
 import com.ideas2it.luxitrip.model.Route;
 import com.ideas2it.luxitrip.model.Schedule;
 import com.ideas2it.luxitrip.model.Stop;
 import com.ideas2it.luxitrip.model.User;
+import com.ideas2it.luxitrip.service.FareService;
 import com.ideas2it.luxitrip.service.ReservationService;
 import com.ideas2it.luxitrip.service.RouteService;
+import com.ideas2it.luxitrip.service.StopService;
+import com.ideas2it.luxitrip.service.UserService;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
@@ -30,6 +34,15 @@ public class ReservationServiceImpl implements ReservationService{
     
     @Autowired
     RouteService routeService;
+    
+    @Autowired
+    StopService stopService;
+    
+    @Autowired
+    FareService fareService;
+    
+    @Autowired
+    UserService userService;
     
     public Set<Bus> getBusesByOriginAndDestination(Stop origin,Stop destination)
             throws CustomException{
@@ -58,10 +71,6 @@ public class ReservationServiceImpl implements ReservationService{
                 }   
             }
         }
-            
-        
-        System.out.println("*********************************************");
-        System.out.println(schedules);
         return schedules;
     }
     
@@ -71,5 +80,28 @@ public class ReservationServiceImpl implements ReservationService{
     
     public void bookTicktes(Reservation reservation) throws CustomException {
         reservationDao.insertBooking(reservation);
+    }
+    
+    public Fare calculatePrice(int originId, int destinationId) throws CustomException {
+        Fare fare = new Fare();
+        int amount = routeService.calculateDistances(originId, destinationId);
+        fare.setSource(stopService.retrieveStopById(originId));
+        fare.setDestination(stopService.retrieveStopById(destinationId));
+        fare.setPrice(amount);
+        fare.setStatus(true);
+        fareService.createFare(fare);
+        return fare;
+    }
+    
+    public float calculateTotalPrice(int originId, int destinationId, int numberOfSeats) throws CustomException {
+        return (numberOfSeats * routeService.calculateDistances(originId, destinationId));
+    }
+    
+    public Stop retrieveStopById(int id) throws CustomException {
+        return stopService.retrieveStopById(id);
+    }
+    
+    public User retrieveUserById(int id) throws CustomException {
+        return userService.retrieveUserById(id);
     }
 }

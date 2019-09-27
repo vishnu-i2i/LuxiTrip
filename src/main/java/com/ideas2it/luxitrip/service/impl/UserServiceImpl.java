@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
      * @throws CustomException
      */
     public String redirectPage(User user, String password) throws CustomException {
-        if(user.getPassword().equals(password)) {
+        if(null != user && user.getPassword().equals(password)) {
             if(user.getRole().equals("User")) {
                 return "User";
             } else if(user.getRole().equals("Admin")) {
@@ -109,10 +109,20 @@ public class UserServiceImpl implements UserService {
         throw new CustomException("User Name and Password Wrong");
     }
     
+    /**
+     * Method used to retrieve the list of buses from the bus service
+     * @return the list of buses
+     * @throws CustomException
+     */
     public List<Bus> retrieveBuses() throws CustomException {
         return busService.retrieveAllBuses();   
     }
     
+    /**
+     * Method used to retrieve the list of stops from the stopService class
+     * @return
+     * @throws CustomException
+     */
     public List<Stop> retrieveAllStops() throws CustomException {
         return stopService.retrieveAllStops();
     }

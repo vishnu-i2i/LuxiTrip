@@ -94,12 +94,13 @@ display: inline-block;
 padding-left : 40px;
 }
 .form-btn {
-	padding-top: 17px;
-        padding-left: 90px;
-	height:50px;
-	margin: 0px;
-	align-items : right;
+    padding-top: 0;
+    padding-left: 0;
+    height: 50px;
+    margin: 0px;
+    align-items: right;
 }
+
 
 .submit-btn {
     text-align: center;    

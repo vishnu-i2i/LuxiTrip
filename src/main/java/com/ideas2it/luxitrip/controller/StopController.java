@@ -34,8 +34,8 @@ public class StopController {
      * @throws ServletException - Error in request from and response for an user
      */
     @RequestMapping("/addStop")
-    public ModelAndView createStop(HttpServletRequest request, 
-            HttpServletResponse response, @ModelAttribute("stop")Stop stop) throws ServletException, IOException {
+    public ModelAndView createStop(HttpServletRequest request, HttpServletResponse response, 
+            @ModelAttribute("stop")Stop stop) throws ServletException, IOException {
         try {
             stopService.createStop(stop);
             return new ModelAndView("Message", "message", "Stop Added Successfully");

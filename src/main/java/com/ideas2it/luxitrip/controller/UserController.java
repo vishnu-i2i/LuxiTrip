@@ -40,7 +40,7 @@ public class UserController {
         ModelAndView model = new ModelAndView();
         try {
             User user = userService.retrieveUserByName(request.getParameter("userName"));
-            String role = userService.redirectPage(user, request.getParameter("password")); 
+            String role = userService.redirectPage(user, request.getParameter("password"));
             if(role.equals("User")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", user.getId());
@@ -59,7 +59,7 @@ public class UserController {
                 return model;
             }
         } catch(CustomException ex) {
-            return new ModelAndView("Message", "message", ex.getMessage());
+            return new ModelAndView("login", "message", ex.getMessage());
         }
     }
     
@@ -84,9 +84,10 @@ public class UserController {
             user.setRole(request.getParameter("role"));
             userService.createUser(user);
             if(user.getRole().equals("Driver") || user.getRole().equals("Admin")) {
+                User user1 = userService.retrieveUserById((Integer.parseInt(request.getParameter("userId"))));
+                model.addObject("user", user1);
                 List<Bus> buses = userService.retrieveBuses();
                 model.addObject("buses", buses);
-                model.addObject("user", user);
                 model.setViewName("adminpage");
                 return model;
             } else {
@@ -151,19 +152,19 @@ public class UserController {
      * @throws IOException
      */
     @RequestMapping("/updateUser")
-    public ModelAndView updateUser(HttpServletRequest request, 
-            HttpServletResponse response, @ModelAttribute("user")User user) throws ServletException, IOException {
+    public ModelAndView updateUser(HttpServletRequest request, HttpServletResponse response, 
+            @ModelAttribute("user")User user) throws ServletException, IOException {
         ModelAndView model = new ModelAndView();
         try {
-            System.out.println(user);
+            userService.updateUser(user);
             if(user.getRole().equals("Admin")) {
-                List<Bus> buses = userService.retrieveBuses();
-                model.addObject("buses", buses);
+                model.addObject("buses", userService.retrieveBuses());
                 model.addObject("user", user);
                 model.setViewName("adminpage");
                 return model;
             } else if(user.getRole().equals("User")){
                 model.addObject("user", user);
+                model.addObject("stops", userService.retrieveAllStops());
                 model.setViewName("userIndex");
                 return model;
             } else {

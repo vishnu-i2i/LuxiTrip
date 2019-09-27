@@ -29,6 +29,15 @@ public class RouteController {
   @Autowired 
   private StopService stopService;
   
+  /**
+   * Method used to register the route and its details into the database
+   * @param request
+   * @param response
+   * @param route
+   * @return the list of routes
+   * @throws IOException
+   * @throws ServletException
+   */
   @RequestMapping("/registerRoute") 
   public ModelAndView registerRoute(HttpServletRequest request, 
           HttpServletResponse response, Route route) 
@@ -38,7 +47,8 @@ public class RouteController {
                       (Integer.parseInt(request.getParameter("origin"))));
           route.setDestination(stopService.retrieveStopById
                       (Integer.parseInt(request.getParameter("destination"))));
-          routeService.createRoute(route); return displayAllRoutes(request,response); 
+          routeService.createRoute(route); 
+          return displayAllRoutes(request,response); 
       } catch (CustomException exception) { 
           return (new ModelAndView("ErrorPage","error",exception)); 
       } 

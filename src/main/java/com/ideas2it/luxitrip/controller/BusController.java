@@ -59,8 +59,9 @@ public class BusController {
                 busService.addSeat(bus,seat);
             } while (capacity != count++);*/
             busService.createBus(bus);
-            return displayAllBuses(request,response);
-            } catch (CustomException exception) {
+            List<Bus> buses = busService.retrieveAllBuses();
+            return new ModelAndView("adminpage", "buses", buses);
+        } catch (CustomException exception) {
             return (new ModelAndView("ErrorPage","error",exception));
         }
     }
